@@ -1,0 +1,81 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+ margin: 0;
+            overflow: hidden;        }
+        .center-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .btn-primary {
+            background-color: red;
+        }
+        p {
+            color: white;
+        }
+       
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+        }
+       .bold-label {
+    font-weight: bold;
+ 
+    padding: 5px; /* Optional: Adds some space around the text */
+}
+    
+       
+    </style>
+    <script>
+        function validateForm() {
+            var adminId = document.forms["loginForm"]["id"].value;
+            var password = document.forms["loginForm"]["password"].value;
+            var adminIdPattern = /^[0-9]+$/;
+            var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+            if (!adminIdPattern.test(adminId)) {
+                alert("Admin ID should contain only numbers.");
+                return false;
+            }
+            if (!passwordPattern.test(password)) {
+                alert("Password must contain at least 8 characters, including one lowercase letter, one uppercase letter, one number, and one symbol.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<video autoplay loop muted id="background-video">
+        <source src="../backgroundvideo.mp4" type="video/mp4">
+    </video>    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 center-form">
+                <form action="/adminlog" method="post" name="loginForm" onsubmit="return validateForm()">
+                       <div class="form-group">
+<span id="member_id" class="bold-label">Admin id:</span> <BR> <BR>
+                        <input type="text" class="form-control" id="id" name="id" required>
+                    </div>
+                    <div class="form-group">
+                    <span id="password" class="bold-label"> Password</span> <BR> <BR>
+                    
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+             
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
